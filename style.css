@@ -34,3 +34,15 @@
     border-right: 2px solid white;
     padding-right: 15px;
 }
+
+.card .more{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+@media only screen and (max-width: 450px) {
+   .card {
+    font-size: 1.2rem;
+   }
+  }
