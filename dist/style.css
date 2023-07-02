@@ -20,7 +20,7 @@
     margin-top: 200px;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
     font-size: 1.5rem;
 }
 
@@ -41,8 +41,38 @@
     justify-content: space-between;
 }
 
+.card .controls {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.card .controls .switch-unit {
+    font-size: 1.2rem;
+    cursor: pointer;
+    align-self: end;
+}
+
+.card .controls .search:focus{
+    outline: none;
+}
+
+.card .controls .search {
+    border: none;
+    border-bottom: 2px solid #FFF;
+    background: none;
+    color: #FFF;
+    font-size: 1.2rem;
+    padding: 5px;
+}
+
 @media only screen and (max-width: 450px) {
    .card {
-    font-size: 1.2rem;
+    font-size: 1rem;
+    padding: 10px;
+   }
+
+   .card .controls .search {
+    width: 50%;
    }
   }
