@@ -5,25 +5,37 @@ export default class WeatherApi {
             const jsonData = await response.json();
             return jsonData;
         }
+        document.querySelector('.weather').textContent = 'Service Unavailable';
         throw new Error(response.status);
     }
 
     static setLocation(data) {
-        return `${data.location.name} ${data.location.country}`;
+        document.querySelector('.location').textContent = `${data.location.name}, ${data.location.country}`;
     }
 
     static setWeather(data, unit) {
-        return `${data.current.condition.text} ${unit === 'C' ? data.current.temp_c : data.current.temp_f}`;
+        document.querySelector('.weather').textContent = data.current.condition.text;
+        if (unit === 'C') {
+            document.querySelector('.temp').innerHTML = `${data.current.temp_c}<span>&#8451;</span>`;
+            document.querySelector('.feels-like').innerHTML = `${data.current.feelslike_c}<span>&#8451;</span>`;
+            document.querySelector('.wind').innerHTML = `${data.current.wind_kph} km/h`;
+        } else {
+            document.querySelector('.temp').innerHTML = `${data.current.temp_f}<span>&#8451;</span>`;
+            document.querySelector('.feels-like').innerHTML = `${data.current.feelslike_f}<span>&#8451;</span>`;
+            document.querySelector('.wind').innerHTML = `${data.current.wind_mph} mp/h`;
+        }
+        document.querySelector('.humidity').innerHTML = `${data.current.humidity}%`;
     }
 
     static async updatePage(area, unit) {
         try {
             const data = await this.fetchData(area);
             console.log(data);
-            console.log(this.setLocation(data));
-            console.log(this.setWeather(data, unit));
+            this.setLocation(data);
+            this.setWeather(data, unit);
         } catch (err) {
             console.log(err);
+            throw new Error(err);
         }
     }
 }
