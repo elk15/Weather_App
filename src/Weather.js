@@ -19,8 +19,8 @@ export default class WeatherApi {
             document.querySelector('.feels-like').innerHTML = `${data.current.feelslike_c}<span>&#8451;</span>`;
             document.querySelector('.wind').innerHTML = `${data.current.wind_kph} km/h`;
         } else {
-            document.querySelector('.temp').innerHTML = `${data.current.temp_f}<span>&#8451;</span>`;
-            document.querySelector('.feels-like').innerHTML = `${data.current.feelslike_f}<span>&#8451;</span>`;
+            document.querySelector('.temp').innerHTML = `${data.current.temp_f}<span>&#8457;</span>`;
+            document.querySelector('.feels-like').innerHTML = `${data.current.feelslike_f}<span>&#8457;</span>`;
             document.querySelector('.wind').innerHTML = `${data.current.wind_mph} mp/h`;
         }
         document.querySelector('.humidity').innerHTML = `${data.current.humidity}%`;
