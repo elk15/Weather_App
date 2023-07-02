@@ -9,7 +9,7 @@
 }
 
 .container {
-    background-color: black;
+    background-color: gold;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -20,8 +20,15 @@
     margin-top: 200px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    font-size: 1.5rem;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    width: 400px;
+    height: 230px;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    /* text-shadow: #000 0px 0px 4px; */
+    position: relative;
 }
 
 .card .details {
@@ -30,7 +37,7 @@
 }
 
 .card .temp {
-    font-size: 5rem;
+    font-size: 3.5rem;
     border-right: 2px solid white;
     padding-right: 15px;
 }
@@ -66,10 +73,24 @@
     padding: 5px;
 }
 
+.error {
+    position: absolute;
+    top: 240px;
+    color: red;
+    text-shadow: none;
+    transition: opacity 200ms;
+    opacity: 0;
+}
+
+
 @media only screen and (max-width: 450px) {
    .card {
-    font-size: 1rem;
-    padding: 10px;
+    font-size: 1.1rem;
+    gap: 10px;
+   }
+
+   .card .temp {
+    font-size: 3rem;
    }
 
    .card .controls .search {

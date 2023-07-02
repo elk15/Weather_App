@@ -5,7 +5,6 @@ export default class WeatherApi {
             const jsonData = await response.json();
             return jsonData;
         }
-        document.querySelector('.weather').textContent = 'Service Unavailable';
         throw new Error(response.status);
     }
 
@@ -28,14 +27,8 @@ export default class WeatherApi {
     }
 
     static async updatePage(area, unit) {
-        try {
-            const data = await this.fetchData(area);
-            console.log(data);
-            this.setLocation(data);
-            this.setWeather(data, unit);
-        } catch (err) {
-            console.log(err);
-            throw new Error(err);
-        }
+        const data = await this.fetchData(area);
+        this.setLocation(data);
+        this.setWeather(data, unit);
     }
 }
