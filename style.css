@@ -27,7 +27,6 @@
     padding: 15px;
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 10px;
-    /* text-shadow: #000 0px 0px 4px; */
     position: relative;
 }
 
@@ -77,9 +76,16 @@
     position: absolute;
     top: 240px;
     color: red;
-    text-shadow: none;
     transition: opacity 200ms;
     opacity: 0;
+}
+
+#myBackground {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
 }
 
 
