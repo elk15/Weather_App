@@ -6,10 +6,23 @@ export default class UI {
 
     static currentLocation = 'Estonia';
 
+    static loaderContainer = document.querySelector('.loader-container');
+
+    static displayLoading() {
+        this.loaderContainer.style.display = 'block';
+        console.log('load');
+    }
+
+    static hideLoading() {
+        this.loaderContainer.style.display = 'none';
+        console.log('stop load');
+    }
+
     static searchCity() {
         const searchBar = document.querySelector('.search');
         searchBar.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
+                this.displayLoading();
                 Weather.updatePage(searchBar.value, this.currentUnit)
                     .then(
                         () => {
@@ -17,12 +30,15 @@ export default class UI {
                             document.querySelector('.error').style.opacity = 0;
                             this.changeBackground();
                         },
-                    ).catch(
+                    )
+                    .then(() => this.hideLoading())
+                    .catch(
                         (err) => {
                             console.log(err);
                             document.querySelector('.error').style.opacity = 1;
                         },
-                    ).finally(
+                    )
+                    .finally(
                         () => {
                             searchBar.value = '';
                         },
@@ -47,15 +63,16 @@ export default class UI {
 
     static changeBackground() {
         const weatherText = document.querySelector('.weather').textContent;
-        console.log(weatherText);
         Background.fetchBackground(weatherText).catch((err) => console.log(err));
     }
 
     static initializePage() {
         this.searchCity();
         this.changeUnit();
+        this.displayLoading();
         Weather.updatePage(this.currentLocation, this.currentUnit)
             .then(() => this.changeBackground())
+            .then(() => this.hideLoading())
             .catch((err) => console.log(err));
     }
 }
