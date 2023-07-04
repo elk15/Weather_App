@@ -5,4 +5,3 @@ List of APIS used:
 
 - www.pexels.com/api/documentation for background videos
 - https://www.weatherapi.com/ for weather info
--
