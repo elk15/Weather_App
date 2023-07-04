@@ -6,9 +6,10 @@ export default class Background {
     static async fetchBackground(weather) {
         const client = createClient(this.KEY);
         client.videos.search({
-            query: `${weather} weather`, orientation: 'landscape', size: 'large', per_page: 1,
+            query: `${weather} weather`, orientation: 'landscape', size: 'large', per_page: 10,
         }).then((data) => {
-            const { link } = data.videos[0].video_files.find((file) => file.quality === 'hd');
+            const videosLength = data.videos.length;
+            const { link } = data.videos[Math.floor(Math.random() * videosLength)].video_files.find((file) => file.quality === 'hd');
             this.setBackground(link);
         }).catch((err) => {
             console.log(err);

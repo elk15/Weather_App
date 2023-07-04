@@ -6,16 +6,12 @@ export default class UI {
 
     static currentLocation = 'Estonia';
 
-    static loaderContainer = document.querySelector('.loader-container');
-
     static displayLoading() {
-        this.loaderContainer.style.display = 'block';
-        console.log('load');
+        document.querySelector('.loader-container').style.display = 'block';
     }
 
     static hideLoading() {
-        this.loaderContainer.style.display = 'none';
-        console.log('stop load');
+        document.querySelector('.loader-container').style.display = 'none';
     }
 
     static searchCity() {
@@ -30,9 +26,7 @@ export default class UI {
                             document.querySelector('.error').style.opacity = 0;
                             this.changeBackground();
                         },
-                    )
-                    .then(() => this.hideLoading())
-                    .catch(
+                    ).catch(
                         (err) => {
                             console.log(err);
                             document.querySelector('.error').style.opacity = 1;
@@ -41,6 +35,7 @@ export default class UI {
                     .finally(
                         () => {
                             searchBar.value = '';
+                            this.hideLoading();
                         },
                     );
             }
@@ -63,7 +58,8 @@ export default class UI {
 
     static changeBackground() {
         const weatherText = document.querySelector('.weather').textContent;
-        Background.fetchBackground(weatherText).catch((err) => console.log(err));
+        Background.fetchBackground(weatherText)
+            .catch((err) => console.log(err));
     }
 
     static initializePage() {
