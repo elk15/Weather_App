@@ -4,7 +4,7 @@ import Background from './Background';
 export default class UI {
     static currentUnit = 'C';
 
-    static currentLocation = 'Estonia';
+    static currentLocation = 'Athens';
 
     static displayLoading() {
         document.querySelector('.loader-container').style.display = 'block';
