@@ -88,6 +88,18 @@
     min-height: 100%;
 }
 
+/* Loading component */
+
+.loader-container {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    background: rgb(240, 240, 240)
+        url("https://media.giphy.com/media/8agqybiK5LW8qrG3vJ/giphy.gif") center
+        no-repeat;
+    z-index: 1;
+}
+
 
 @media only screen and (max-width: 450px) {
    .card {
