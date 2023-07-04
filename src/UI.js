@@ -1,4 +1,5 @@
 import Weather from './Weather';
+import Background from './Background';
 
 export default class UI {
     static currentUnit = 'C';
@@ -14,6 +15,7 @@ export default class UI {
                         () => {
                             this.currentLocation = searchBar.value;
                             document.querySelector('.error').style.opacity = 0;
+                            this.changeBackground();
                         },
                     ).catch(
                         (err) => {
@@ -43,9 +45,17 @@ export default class UI {
         });
     }
 
+    static changeBackground() {
+        const weatherText = document.querySelector('.weather').textContent;
+        console.log(weatherText);
+        Background.fetchBackground(weatherText).catch((err) => console.log(err));
+    }
+
     static initializePage() {
         this.searchCity();
         this.changeUnit();
-        Weather.updatePage(this.currentLocation, this.currentUnit);
+        Weather.updatePage(this.currentLocation, this.currentUnit)
+            .then(() => this.changeBackground())
+            .catch((err) => console.log(err));
     }
 }
